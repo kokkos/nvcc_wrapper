@@ -71,6 +71,9 @@ first_xcompiler_arg=1
 
 temp_dir=${TMPDIR:-/tmp}
 
+# Check if we have an optimization argument already
+optimization_applied=0
+
 #echo "Arguments: $# $@"
 
 while [ $# -gt 0 ]
@@ -92,8 +95,16 @@ do
   *.cpp|*.cxx|*.cc|*.C|*.c++|*.cu)
     cpp_files="$cpp_files $1"
     ;;
+   # Ensure we only have one optimization flag because NVCC doesn't allow muliple
+  -O*)
+    if [ $optimization_applied -eq 0 ]; then
+       echo "nvcc_wrapper - *warning* you have set multiple optimization flags (-O*), only the first is used because nvcc can only accept a single optimization setting."
+       shared_args="$shared_args $1"
+       optimization_applied=1
+    fi
+    ;;
   #Handle shared args (valid for both nvcc and the host compiler)
-  -O*|-D*|-c|-I*|-L*|-l*|-g|--help|--version|-E|-M|-shared)
+  -D*|-c|-I*|-L*|-l*|-g|--help|--version|-E|-M|-shared)
     shared_args="$shared_args $1"
     ;;
   #Handle shared args that have an argument
