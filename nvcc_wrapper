@@ -97,8 +97,9 @@ do
     ;;
    # Ensure we only have one optimization flag because NVCC doesn't allow muliple
   -O*)
-    if [ $optimization_applied -eq 0 ]; then
+    if [ $optimization_applied -eq 1 ]; then
        echo "nvcc_wrapper - *warning* you have set multiple optimization flags (-O*), only the first is used because nvcc can only accept a single optimization setting."
+    else
        shared_args="$shared_args $1"
        optimization_applied=1
     fi
