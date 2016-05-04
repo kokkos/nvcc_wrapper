@@ -113,7 +113,7 @@ do
     shift
     ;;
   #Handle known nvcc args
-  -gencode*|--dryrun|--verbose|--keep|--keep-dir*|-G|--relocatable-device-code*|-lineinfo|-expt-extended-lambda|--resource-usage)
+  -gencode*|--dryrun|--verbose|--keep|--keep-dir*|-G|--relocatable-device-code*|-lineinfo|-expt-extended-lambda|--resource-usage|-Xptxas*)
     cuda_args="$cuda_args $1"
     ;;
   #Handle known nvcc args that have an argument
