@@ -192,8 +192,8 @@ do
     ;;
   #Handle shared libraries with *.so.* names which nvcc can't do.
   *.so.*)
-    shared_versioned_libraries_host = "$shared_versioned_libraries_host $1"
-    shared_versioned_libraries = "$shared_versioned_libraries -Xlinker $1"
+    shared_versioned_libraries_host="$shared_versioned_libraries_host $1"
+    shared_versioned_libraries="$shared_versioned_libraries -Xlinker $1"
   ;;
   #All other args are sent to the host compiler
   *)
