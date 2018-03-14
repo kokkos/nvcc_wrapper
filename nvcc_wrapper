@@ -285,8 +285,6 @@ if [ $dry_run -eq 1 ]; then
   exit 0
 fi
 
-echo "CUDA: $cuda_args"
-
 #Run compilation command
 if [ $host_only -eq 1 ]; then
   $host_command
