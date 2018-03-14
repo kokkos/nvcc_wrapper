@@ -121,7 +121,7 @@ do
     shift
     ;;
   #Handle known nvcc args
-  -gencode*|--dryrun|--verbose|--keep|--keep-dir*|-G|--relocatable-device-code*|-lineinfo|-expt-extended-lambda|--resource-usage|-Xptxas*)
+  --dryrun|--verbose|--keep|--keep-dir*|-G|--relocatable-device-code*|-lineinfo|-expt-extended-lambda|--resource-usage|-Xptxas*)
     cuda_args="$cuda_args $1"
     ;;
   #Handle more known nvcc args
@@ -182,9 +182,10 @@ do
     shift
     ;;
   #Handle -arch argument (if its not set use a default
-  -arch*)
-    cuda_args="$cuda_args $1"
+  -arch|-gencode|-code)
+    cuda_args="$cuda_args $1 $2"
     arch_set=1
+    shift
     ;;
   #Handle -Xcudafe argument
   -Xcudafe)
@@ -283,6 +284,8 @@ if [ $dry_run -eq 1 ]; then
   fi
   exit 0
 fi
+
+echo "CUDA: $cuda_args"
 
 #Run compilation command
 if [ $host_only -eq 1 ]; then
