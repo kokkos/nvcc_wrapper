@@ -125,7 +125,7 @@ do
     ;;
   #Handle shared args (valid for both nvcc and the host compiler)
   -D*|-I*|-L*|-l*|-g|--help|--version|-E|-M|-shared)
-    shared_args="$shared_args $1"
+    shared_args=`printf "%q " "$shared_args $1"`
     ;;
   #Handle compilation argument
   -c)
