@@ -169,6 +169,10 @@ do
     cuda_args="$cuda_args $1 $2"
     shift
     ;;
+  -rdc=true|-rdc=false)
+    cuda_args="$cuda_args $1"
+    shift
+    ;;
   #Handle c++11
   --std=c++11|-std=c++11|--std=c++14|-std=c++14|--std=c++1z|-std=c++1z)
     if [ $stdcxx_applied -eq 1 ]; then
