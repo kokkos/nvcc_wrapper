@@ -257,6 +257,11 @@ do
     code_set=1
     shift
     ;;
+  -arch*|-gencode*|-code*)
+    cuda_args="$cuda_args $1 $2"
+    arch_set=1
+    shift
+    ;;
   #Handle -Xcudafe argument
   -Xcudafe)
     cuda_args="$cuda_args -Xcudafe $2"
