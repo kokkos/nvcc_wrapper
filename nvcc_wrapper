@@ -94,6 +94,9 @@ depfile_separate=0
 depfile_output_arg=""
 depfile_target_arg=""
 
+# Option to remove duplicate libraries and object files
+remove_duplicate_link_files=0
+
 #echo "Arguments: $# $@"
 
 while [ $# -gt 0 ]
@@ -110,6 +113,10 @@ do
   #replace '#pragma ident' with '#ident' this is needed to compile OpenMPI due to a configure script bug and a non standardized behaviour of pragma with macros
   --replace-pragma-ident)
     replace_pragma_ident=1
+    ;;
+  #remove duplicate link files
+  --remove-duplicate-link-files)
+    remove_duplicate_link_files=1
     ;;
   #handle source files to be compiled as cuda files
   *.cpp|*.cxx|*.cc|*.C|*.c++|*.cu)
@@ -272,7 +279,7 @@ do
 done
 
 #Remove duplicate object files
-
+if [ $remove_duplicate_link_files -eq 1 ]; then
 for obj in $object_files
 do
   object_files_reverse="$obj $object_files_reverse"
@@ -301,6 +308,7 @@ for obj in $object_files_reverse_clean
 do
   object_files="$obj $object_files"
 done
+fi
 
 #Add default host compiler if necessary
 if [ $ccbin_set -ne 1 ]; then
