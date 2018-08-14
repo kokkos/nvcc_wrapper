@@ -259,7 +259,7 @@ do
     shift
     ;;
   #Handle args that should be sent to the linker
-  -Wl*)
+  -Wl,*)
     xlinker_args="$xlinker_args -Xlinker ${1:4:${#1}}"
     host_linker_args="$host_linker_args ${1:4:${#1}}"
     ;;
