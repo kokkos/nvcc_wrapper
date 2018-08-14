@@ -136,7 +136,7 @@ do
     arg=`printf "%q" $unescape_commas`
     shared_args="$shared_args $arg"
     ;;
-  -I*|-L*|-l*|-g|--help|--version|-E|-M|-shared)
+  -I*|-L*|-l*|-g|--help|--version|-E|-M|-shared|-w)
     shared_args="$shared_args $1"
     ;;
   #Handle compilation argument
@@ -251,6 +251,11 @@ do
   #Handle -Xcudafe argument
   -Xcudafe)
     cuda_args="$cuda_args -Xcudafe $2"
+    shift
+    ;;
+  #Handle -Xlinker argument
+  -Xlinker)
+    xlinker_args="$xlinker_args -Xlinker $2"
     shift
     ;;
   #Handle args that should be sent to the linker
