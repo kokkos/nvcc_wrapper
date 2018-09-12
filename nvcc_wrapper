@@ -228,7 +228,6 @@ do
     else
       xcompiler_args="$xcompiler_args,-x,c++"
     fi
-    shift
     ;;
   #Handle -ccbin (if its not set we can set it to a default value)
   -ccbin)
