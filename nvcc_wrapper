@@ -183,7 +183,7 @@ do
     cuda_args="$cuda_args $1"
     ;;
   #Handle known nvcc args that have an argument
-  -rdc|-maxrregcount|--default-stream)
+  -rdc|-maxrregcount|--default-stream|-Xnvlink)
     cuda_args="$cuda_args $1 $2"
     shift
     ;;
