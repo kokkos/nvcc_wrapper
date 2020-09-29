@@ -240,6 +240,9 @@ do
   #strip of -Woverloaded-virtual to avoid "cc1: warning: command line option ‘-Woverloaded-virtual’ is valid for C++/ObjC++ but not for C"
   -Woverloaded-virtual)
     ;;
+  -Wext-lambda-captures-this|--Wext-lambda-captures-this)
+    cuda_args="$cuda_args $1"
+    ;;
   #strip -Xcompiler because we add it
   -Xcompiler)
     if [ $first_xcompiler_arg -eq 1 ]; then
